@@ -14,9 +14,8 @@
  得到文件夹的大小
 
  @param filePath 文件夹路径
- @return 文件大小
  */
-+ (long long)getFileSizeWithFilePath:(NSString *)filePath;
++ (void)getFileSizeWithFilePath:(NSString *)filePath completion:(void (^)(NSInteger))completion;
 
 /**
  清除文件夹里所有文件
