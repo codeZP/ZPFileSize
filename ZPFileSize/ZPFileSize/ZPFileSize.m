@@ -43,7 +43,7 @@
     
 }
 
-+ (void)cleanFileWithPath:(NSString *)filePath {
++ (void)cleanFileWithPath:(NSString *)filePath completion:(void (^)())completion {
     NSFileManager *manager = [NSFileManager defaultManager];
     // 文件夹所有的自路径
     NSArray *subPaths = [manager subpathsAtPath:filePath];
@@ -53,6 +53,11 @@
             NSString *fullPath = [filePath stringByAppendingPathComponent:subPath];
             [manager removeItemAtPath:fullPath error:nil];
         }
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion();
+            }
+        });
     });
 }
 

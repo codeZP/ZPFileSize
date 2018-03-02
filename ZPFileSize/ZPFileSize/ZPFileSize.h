@@ -11,9 +11,10 @@
 @interface ZPFileSize : NSObject
 
 /**
- 得到文件夹的大小
+ 异步得到文件夹的大小
 
- @param filePath 文件夹路径
+ @param filePath 文件名称
+ @param completion 得到缓存大小回调
  */
 + (void)getFileSizeWithFilePath:(NSString *)filePath completion:(void (^)(NSInteger))completion;
 
@@ -22,6 +23,13 @@
 
  @param filePath 文件夹路径
  */
-+ (void)cleanFileWithPath:(NSString *)filePath;
+
+/**
+ 异步清除文件夹里所有文件
+
+ @param filePath 文件名称
+ @param completion 清空回调
+ */
++ (void)cleanFileWithPath:(NSString *)filePath completion:(void (^)())completion;
 
 @end
